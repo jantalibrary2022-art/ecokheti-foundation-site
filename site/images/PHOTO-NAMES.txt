@@ -1,0 +1,14 @@
+Put photos in this folder with these exact file names (JPG, about 1600 px wide, under 400 KB each).
+Each photo replaces its striped placeholder automatically.
+
+hero.jpg                    home page, top (wide, landscape)
+home-1.jpg, home-2.jpg      home page, "How it works" pair
+project-ward.jpg            ward pilot
+project-forest-colony.jpg   Forest Colony home composting
+project-3.jpg               third project
+involve-csr.jpg, involve-donate.jpg, involve-research.jpg   "Get involved" cards
+banner-about.jpg, banner-work.jpg, banner-transparency.jpg, banner-contact.jpg   page tops (wide)
+work-1.jpg, work-2.jpg      Our work page pair
+prakash-kumar.jpg, vinod-kumar.jpg   square portraits
+
+Only use photos of your own work, with consent from anyone identifiable. For children, get a parent's consent.

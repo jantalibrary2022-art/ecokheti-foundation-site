@@ -1,0 +1,26 @@
+# ===== EcoKheti Foundation: add these lines to public_html/.htaccess =====
+# Back up the current .htaccess first (File Manager, right-click, Copy).
+# If the file has a "# BEGIN WordPress" block, paste these lines ABOVE it.
+# If "RewriteEngine On" already appears above where you paste, keep it once only.
+
+RewriteEngine On
+
+# 1. Send every visitor on both domains to https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Old path urban-kheti.com/ecokheti/... goes to the foundation's own domain
+RewriteCond %{HTTP_HOST} ^(www\.)?urban-kheti\.com$ [NC]
+RewriteCond %{THE_REQUEST} \s/ecokheti/([^\s?]*) [NC]
+RewriteRule ^ https://ecokhetifoundation.org.in/%1 [L,R=301]
+
+# 3. www.ecokhetifoundation.org.in goes to ecokhetifoundation.org.in
+RewriteCond %{HTTP_HOST} ^www\.ecokhetifoundation\.org\.in$ [NC]
+RewriteRule ^ https://ecokhetifoundation.org.in%{REQUEST_URI} [L,R=301]
+
+# 4. The foundation's domain shows the files in public_html/ecokheti/
+RewriteCond %{HTTP_HOST} ^ecokhetifoundation\.org\.in$ [NC]
+RewriteCond %{REQUEST_URI} !^/ecokheti/
+RewriteRule ^(.*)$ /ecokheti/$1 [L]
+
+# ===== end of EcoKheti Foundation lines =====
