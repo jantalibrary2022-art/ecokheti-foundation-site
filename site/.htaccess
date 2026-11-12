@@ -23,5 +23,4 @@ RewriteCond %{HTTP_COOKIE} !(^|;\s*)ekpreview=on
 RewriteCond %{REQUEST_URI} !maintenance\.html$
 RewriteRule ^ - [R=503,L]
 ErrorDocument 503 /ecokheti/maintenance.html
-Header always set Retry-After "86400" "expr=%{REQUEST_STATUS} == 503"
 # ===== END MAINTENANCE MODE =====
