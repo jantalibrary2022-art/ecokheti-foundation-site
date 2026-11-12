@@ -1,0 +1,27 @@
+# EcoKheti Foundation, rules for the ecokheti folder.
+# Apache uses these instead of the parent folder's rules for requests that land here.
+
+RewriteEngine On
+
+# Requests to urban-kheti.com/ecokheti/... go to the foundation's own domain
+RewriteCond %{HTTP_HOST} ^(www\.)?urban-kheti\.com$ [NC]
+RewriteRule ^(.*)$ https://ecokhetifoundation.org.in/$1 [R=301,L]
+
+# Always https
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://ecokhetifoundation.org.in/$1 [R=301,L]
+
+# ===== MAINTENANCE MODE (delete from here to END MAINTENANCE MODE to go live) =====
+# Preview: open https://ecokhetifoundation.org.in/?preview=ek-preview-7q4m once;
+# the browser then sees the full site for 24 hours.
+RewriteCond %{QUERY_STRING} (^|&)preview=ek-preview-7q4m(&|$)
+RewriteRule ^ - [CO=ekpreview:on:ecokhetifoundation.org.in:1440:/]
+
+# Everyone else gets the maintenance page, with status 503 so search engines come back later
+RewriteCond %{QUERY_STRING} !(^|&)preview=ek-preview-7q4m(&|$)
+RewriteCond %{HTTP_COOKIE} !(^|;\s*)ekpreview=on
+RewriteCond %{REQUEST_URI} !maintenance\.html$
+RewriteRule ^ - [R=503,L]
+ErrorDocument 503 /ecokheti/maintenance.html
+Header always set Retry-After "86400" "expr=%{REQUEST_STATUS} == 503"
+# ===== END MAINTENANCE MODE =====
