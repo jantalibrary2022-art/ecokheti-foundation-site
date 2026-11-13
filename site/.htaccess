@@ -20,7 +20,7 @@ RewriteRule ^ - [CO=ekpreview:on:ecokhetifoundation.org.in:1440:/]
 # Everyone else gets the maintenance page, with status 503 so search engines come back later
 RewriteCond %{QUERY_STRING} !(^|&)preview=ek-preview-7q4m(&|$)
 RewriteCond %{HTTP_COOKIE} !(^|;\s*)ekpreview=on
-RewriteCond %{REQUEST_URI} !maintenance\.html$
+RewriteCond %{REQUEST_URI} !(maintenance\.html|favicon\.(svg|ico)|apple-touch-icon\.png)$
 RewriteRule ^ - [R=503,L]
 ErrorDocument 503 /ecokheti/maintenance.html
 # ===== END MAINTENANCE MODE =====
